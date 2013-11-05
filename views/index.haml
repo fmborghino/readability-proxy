@@ -3,11 +3,15 @@
     %legend= @title
     .pure-control-group
       %label URL:
-      %input#url{ :type => "text", :name => "url" }
+      %input.pure-input-1-2#url{ :type => "text", :name => "url" }
 
     .pure-control-group
       %label Format:
-      %input#format{ :type => "text", :name => "format" }
+      %select#format{ :name => "format" }
+        %option{ :value => "json", :selected => true }
+          json
+        %option{ :value => "html" }
+          html
 
     .pure-controls
       %button.pure-button.pure-button-primary{ :type => "submit" } Submit
