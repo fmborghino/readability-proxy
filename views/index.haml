@@ -1,0 +1,13 @@
+%form#video-form.pure-form.pure-form-aligned{ :action => "/1/parser", :method => "post", :enctype => "multipart/form-data" }
+  %fieldset
+    %legend= @title
+    .pure-control-group
+      %label URL:
+      %input#url{ :type => "text", :name => "url" }
+
+    .pure-control-group
+      %label Format:
+      %input#format{ :type => "text", :name => "format" }
+
+    .pure-controls
+      %button.pure-button.pure-button-primary{ :type => "submit" } Submit

@@ -14,18 +14,20 @@ end
 
 get '/' do
   headers "Content-Type" => "text/html; charset=utf-8"
-  [
-    'try /parser?url=your_url for default json response',
-    'try /parser?url=your_url&format=html to render the content'
-  ].join('</br>')
+  haml :index
 end
 
-get '/parser' do
-  headers "Content-Type" => "text/html; charset=utf-8"
+post '/1/parser' do
+  parser
+end
+
+get '/1/parser' do
+  parser
+end
+
+def parser
   token = ENV['READABILITY_PARSER_TOKEN'] || $config[:readability][:token]
-  puts token
   url = "https://readability.com/api/content/v1/parser?url=%s&token=%s" % [ params[:url], token ]
-  puts url
   uri = URI.parse(url)
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
