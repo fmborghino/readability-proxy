@@ -17,13 +17,15 @@ get '/' do
   haml :index
 end
 
-post '/1/parser' do
+post '/v1/parser' do
   parser
 end
 
-get '/1/parser' do
+get '/v1/parser' do
   parser
 end
+
+private
 
 def parser
   token = ENV['READABILITY_PARSER_TOKEN'] || $config[:readability][:token]
