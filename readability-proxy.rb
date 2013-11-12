@@ -6,6 +6,12 @@ require 'sinatra'
 
 $config = YAML.load_file(File.join(Dir.pwd, 'config.yml'))
 
+STYLE = <<EOS
+<style type="text/css">
+  img { max-width:100%; }
+</style>
+EOS
+
 configure do
 end
 
@@ -51,7 +57,8 @@ def parser
 
   if params[:format] == 'html'
     content_type "text/html; charset=utf-8"
-    "<p><a href=\"%s\"><b>%s</b></a></p><hr/>" % [body['url'], body['title']] + body['content']
+    title = body['title'] || '[Full version]'
+    STYLE + "<p><a href=\"%s\" target=\"_blank\"><b>%s</b></a></p><hr/>" % [body['url'], title] + body['content']
   else
     content_type "application/json"
     response.body
