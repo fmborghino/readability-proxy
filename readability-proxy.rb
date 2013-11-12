@@ -39,6 +39,7 @@ def parser
   end
   body = JSON.parse(response.body) rescue { error: true, message: "body not json: %s" % response.body[0..50] }
   if response.code != "200" or body.has_key? :error
+    body['code'] = response.code.to_i
     if params[:format] == 'html'
       content_type "text/html; charset=utf-8"
       return haml :parser_error, locals: { response: response, body: body }
@@ -50,7 +51,7 @@ def parser
 
   if params[:format] == 'html'
     content_type "text/html; charset=utf-8"
-    "<p><b>%s</b></p><hr/>" % body["title"] + body["content"]
+    "<p><a href=\"%s\"><b>%s</b></a></p><hr/>" % [body['url'], body['title']] + body['content']
   else
     content_type "application/json"
     response.body
