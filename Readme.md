@@ -6,8 +6,6 @@ Dev mode usage: shotgun
 Production deploy: git push heroku master
 Production mode usage: heroku open
 (or visit: http://sinatra-readability-proxy.herokuapp.com/)
-
-Todo
-----
-
- - add a form to / to fetch a URL, select output format
+Secret: Preferably set this with
+  heroku config:set READABILITY_PARSER_TOKEN=your_token
+Else set in config.yml. Recommend you don't check this in.
