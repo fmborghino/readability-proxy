@@ -1,3 +1,8 @@
 %b
-  Parser Error
-%p #{response.code} : #{body['messages']}
+  Parser Error for
+  %a{:href => @parser_resp_body['url'], :target => '_blank'}
+    = @parser_resp_body['url']
+%p
+  = @parser_resp.code
+  \:
+  = @parser_resp_body['messages']
