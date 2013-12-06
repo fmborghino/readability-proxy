@@ -54,6 +54,7 @@ def parser
     content_type "text/html; charset=utf-8"
     @title = @parser_resp_body['title'] || '[Full version]'
     @style = STYLE
+    @nonav = true
     haml :content
   else
     content_type "application/json"

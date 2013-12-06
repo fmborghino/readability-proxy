@@ -11,12 +11,13 @@
       #{@style}
   %body
     .container
-      .nav
-        .pure-menu.pure-menu-open.pure-menu-horizontal
-          %ul
-            %li
-              %a{ :href => "/" } Readability Parser Proxy
-            %li.pure-menu-selected
-              %a{ :href => "http://www.readability.com/developers/api/parser" } Parser API
+      -unless @nonav
+        .nav
+          .pure-menu.pure-menu-open.pure-menu-horizontal
+            %ul
+              %li
+                %a{ :href => "/" } Readability Parser Proxy
+              %li
+                %a{ :href => "http://www.readability.com/developers/api/parser" } Parser API
       .main
         = yield
