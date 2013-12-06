@@ -1,0 +1,20 @@
+<form id="video-form" class="pure-form pure-form-aligned" action="/v1/parser"
+  method="get" enctype="multipart/form-data">
+  <fieldset>
+    <legend><%= @title %></legend>
+    <div class="pure-control-group">
+      <label>URL:</label>
+      <input class="pure-input-1-2" id="url" type="text" name="url"/>
+    </div>
+    <div class="pure-control-group">
+      <label>Format:</label>
+      <select id="format" name="format">
+        <option value="json" selected="true">json</option>
+        <option value="html">html</option>
+      </select>
+    </div>
+    <div class="pure-controls">
+      <button class="pure-button pure-button-primary" type="submit">Submit</button>
+    </div>
+  </fieldset>
+</form>

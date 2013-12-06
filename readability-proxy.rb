@@ -5,6 +5,9 @@ require 'uri'
 require 'sinatra'
 
 $config = YAML.load_file(File.join(Dir.pwd, 'config.yml'))
+helpers do
+  alias :tmpl :erb
+end
 
 STYLE = <<EOS
   img { max-width:100%; }
@@ -18,7 +21,7 @@ end
 
 get '/' do
   content_type 'text/html; charset=utf-8'
-  haml :index
+  tmpl :index
 end
 
 post '/v1/parser.?:format?' do
@@ -43,7 +46,7 @@ def parser
     @parser_resp_body['url'] = @original_url
     if params[:format] == 'html'
       content_type "text/html; charset=utf-8"
-      return haml :parser_error
+      return tmpl :parser_error
     else
       content_type "application/json"
       return [ @parser_resp.code.to_i, [ @parser_resp_body.to_json ] ]
@@ -55,7 +58,7 @@ def parser
     @title = @parser_resp_body['title'] || '[Full version]'
     @style = STYLE
     @nonav = true
-    haml :content
+    tmpl :content
   else
     content_type "application/json"
     @parser_resp.body
