@@ -6,7 +6,7 @@ require 'sinatra'
 
 $config = YAML.load_file(File.join(Dir.pwd, 'config.yml'))
 helpers do
-  alias :tmpl :erb
+  alias :tmpl :erb # :erb or :haml
 end
 
 STYLE = <<EOS
