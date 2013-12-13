@@ -5,6 +5,7 @@ require 'uri'
 require 'sinatra'
 
 $config = YAML.load_file(File.join(Dir.pwd, 'config.yml'))
+
 helpers do
   alias :tmpl :erb # :erb or :haml
 end
@@ -45,6 +46,7 @@ def parser
     @parser_resp_body['code'] = @parser_resp.code.to_i
     @parser_resp_body['url'] = @original_url
     if params[:format] == 'html'
+      redirect to(@original_url) if on_error_redirect?
       content_type "text/html; charset=utf-8"
       return tmpl :parser_error
     else
@@ -73,6 +75,9 @@ def http_get url
   http.request(request)
 end
 
+def on_error_redirect?
+  not (params[:onerr].nil? or params[:onerr].empty?)
+end
 def debug?
   (not ENV['DEBUG'].nil?) || $config[:debug]
 end
