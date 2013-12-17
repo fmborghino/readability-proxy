@@ -6,10 +6,6 @@ require 'sinatra'
 
 $config = YAML.load_file(File.join(Dir.pwd, 'config.yml'))
 
-helpers do
-  alias :tmpl :erb # :erb or :haml
-end
-
 STYLE = <<EOS
   img { max-width:100%; }
 EOS
@@ -22,7 +18,7 @@ end
 
 get '/' do
   content_type 'text/html; charset=utf-8'
-  tmpl :index
+  erb :index
 end
 
 post '/v1/parser.?:format?' do
@@ -48,7 +44,7 @@ def parser
     if params[:format] == 'html'
       redirect to(@original_url) if on_error_redirect?
       content_type "text/html; charset=utf-8"
-      return tmpl :parser_error
+      return erb :parser_error
     else
       content_type "application/json"
       return [ @parser_resp.code.to_i, [ @parser_resp_body.to_json ] ]
@@ -60,7 +56,7 @@ def parser
     @title = @parser_resp_body['title'] || '[Full version]'
     @style = STYLE
     @nonav = true
-    tmpl :content
+    erb :content
   else
     content_type "application/json"
     @parser_resp.body
@@ -76,10 +72,10 @@ def http_get url
 end
 
 def on_error_redirect?
-  not (params[:onerr].nil? or params[:onerr].empty?)
+  !(params[:onerr].nil? or params[:onerr].empty?)
 end
 def debug?
-  (not ENV['DEBUG'].nil?) || $config[:debug]
+  (!ENV['DEBUG'].nil?) || $config[:debug]
 end
 
 def dump_debug r

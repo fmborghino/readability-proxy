@@ -2,8 +2,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     ffi (1.9.3)
-    haml (4.0.3)
-      tilt
     listen (1.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -28,6 +26,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  haml
   rerun
   sinatra
