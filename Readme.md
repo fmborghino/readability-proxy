@@ -17,3 +17,4 @@ or visit: http://sinatra-readability-proxy.herokuapp.com/
 Preferably set this with
   heroku config:set READABILITY_PARSER_TOKEN=your_token
 Else set in config.yml. Recommend you don't check this in.
+Or start dev like this: READABILITY_PARSER_TOKEN=your_token rerun rackup

@@ -74,6 +74,7 @@ end
 def on_error_redirect?
   !(params[:onerr].nil? or params[:onerr].empty?)
 end
+
 def debug?
   (!ENV['DEBUG'].nil?) || $config[:debug]
 end
