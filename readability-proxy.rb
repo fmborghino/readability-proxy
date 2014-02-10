@@ -37,7 +37,8 @@ def parser
   dump_debug(@parser_resp) if debug?
   @parser_resp_body = JSON.parse(@parser_resp.body) rescue { error: true, message: "body not json: %s" % @parser_resp.body[0..50] }
 
-  if @parser_resp.code != "200" or @parser_resp_body.has_key? :error
+  # normal error cases
+  if @parser_resp.code != '200' or @parser_resp_body.has_key? :error
     @original_url = params[:url]
     @parser_resp_body['code'] = @parser_resp.code.to_i
     @parser_resp_body['url'] = @original_url
@@ -51,9 +52,17 @@ def parser
     end
   end
 
+  # unexpectedly borked responses occasionally show up, be defensive
+  if (@parser_resp_body['content'].nil? or @parser_resp_body['content'].empty?) and
+    params[:format] == 'html' and
+    on_error_redirect?
+
+    redirect to(params[:url])
+  end
+
   if params[:format] == 'html'
     content_type "text/html; charset=utf-8"
-    @title = @parser_resp_body['title'] || '[Full version]'
+    @title = clean_title @parser_resp_body['title'], params[:url]
     @style = STYLE
     @nonav = true
     erb :content
@@ -69,6 +78,17 @@ def http_get url
   http.use_ssl = (uri.scheme == 'https')
   request = Net::HTTP::Get.new(uri.request_uri)
   http.request(request)
+end
+
+def clean_title title, original_url
+  if title.nil? or
+    title.empty? or
+    title == original_url
+
+    '[Full version]'
+  else
+    title
+  end
 end
 
 def on_error_redirect?
