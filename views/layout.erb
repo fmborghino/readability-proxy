@@ -6,7 +6,11 @@
 <title><%= @title || 'Readability Parser Proxy' %></title>
 <meta name="description" content="Simple proxy to the readability.com content parser.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.2.0/base-min.css&pure/0.2.0/grids-min.css&pure/0.2.0/forms-min.css&pure/0.2.0/buttons-min.css&pure/0.2.0/menus-min.css&pure/0.2.0/tables-min.css">
+<% if @proxied_content %>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.2.0/base-min.css">
+<% else %>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.2.0/base-min.css&pure/0.2.0/grids-min.css&pure/0.2.0/forms-min.css&pure/0.2.0/buttons-min.css&pure/0.2.0/menus-min.css&pure/0.2.0/tables-min.css">
+<% end %>
 <link rel="stylesheet" href="/stylesheets/application.css">
 <link rel="icon shortcut" href="/images/wrench.ico" type="image/x-icon">
 <style>
@@ -16,7 +20,7 @@
 
 <body>
 <div class="container">
-  <% unless @nonav %>
+  <% unless @proxied_content %>
     <div class="nav">
       <div class="pure-menu pure-menu-open pure-menu-horizontal">
         <ul>

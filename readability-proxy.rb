@@ -64,7 +64,7 @@ def parser
     content_type "text/html; charset=utf-8"
     @title = clean_title @parser_resp_body['title'], params[:url]
     @style = STYLE
-    @nonav = true
+    @proxied_content = true
     erb :content
   else
     content_type "application/json"
@@ -85,7 +85,7 @@ def clean_title title, original_url
     title.empty? or
     title == original_url
 
-    '[Full version]'
+    '[Original article]'
   else
     title
   end
