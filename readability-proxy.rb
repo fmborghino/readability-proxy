@@ -6,10 +6,6 @@ require 'sinatra'
 
 $config = YAML.load_file(File.join(Dir.pwd, 'config.yml'))
 
-STYLE = <<EOS
-  img { max-width:100%; }
-EOS
-
 configure do
 end
 
@@ -63,7 +59,6 @@ def parser
   if params[:format] == 'html'
     content_type "text/html; charset=utf-8"
     @title = clean_title @parser_resp_body['title'], params[:url]
-    @style = STYLE
     @proxied_content = true
     erb :content
   else
