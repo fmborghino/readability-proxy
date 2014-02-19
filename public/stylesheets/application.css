@@ -2,41 +2,44 @@ body { width: 100%; }
 .container { margin: 0 auto; max-width: 960px; padding: 0 1%; }
 img { max-width:100%; }
 .r-header {
-  margin: 2px 0;
-  padding: 0 0 1px 0;
+  background-color:#55acee;
   border-bottom: 1px solid black;
-  font-weight:normal;
+  color:white;
   font-style:normal;
+  font-weight:normal;
   height:34px;
-  line-height:28px;
-  position: relative;
+  margin:2px 0;
+  padding:0 0 1px 0;
+  position:relative;
 }
 .r-header .title {
-  font-weight:bold;
+  width:90%;
+  font-size:87%;
+  margin-left:2px;
 }
 .r-header .left {
+  left: 0;
   position: absolute;
   top: 4px;
-  left: 0;
 }
 .r-header .right {
   position: absolute;
-  top: 1px;
   right: 0;
+  top: 1px;
 }
 .r-header .button {
-  background-color:white;
-  -webkit-border-radius:10px;
-  -moz-border-radius:10px;
+  background-color:#55acee;
   border-radius:10px;
-  text-indent:0;
-  border:2px solid #1f98c7;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border:2px solid white;
+  color:white;
   display:inline-block;
-  color:#1f98c7;
-  text-decoration:none;
+  font-size:150%;
+  margin:0 2px;
+  padding:0 5px;
   text-align:center;
-  padding: 0 5px;
+  text-decoration:none;
+  text-indent:0;
 }
-.r-header .button:active {
-  top:2px;
-}
+.r-header .button:active { top:2px; }
