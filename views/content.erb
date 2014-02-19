@@ -1,7 +1,9 @@
-<p>
-<a href="<%= @parser_resp_body['url'] %>" target="_blank">
-  <b><%= @title %></b>
-</a>
-</p>
-<hr/>
+<div class="r-header">
+  <div class="title left">
+    <%= @title %>
+  </div>
+  <a class="button right" href="<%= @parser_resp_body['url'] %>" target="_blank">
+    Open &#8594;
+  </a>
+</div>
 <%= @parser_resp_body['content'] %>
