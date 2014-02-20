@@ -1,7 +1,9 @@
-<b>Parser Error for</b>
-<a href="<%= @parser_resp_body['url'] %>" target="_blank">
-  <%= @parser_resp_body['url'] %>
-</a>
-<p>
-<%= @parser_resp.code %>:<%= @parser_resp_body['messages'] %>
-</p>
+<div class="container">
+  <b>Parser Error for</b>
+  <a href="<%= @parser_resp_body['url'] %>" target="_blank">
+    <%= @parser_resp_body['url'] %>
+  </a>
+  <p>
+  <%= @parser_resp.code %>:<%= @parser_resp_body['messages'] %>
+  </p>
+</div>

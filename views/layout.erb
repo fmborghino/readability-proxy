@@ -16,8 +16,8 @@
 </head>
 
 <body>
-<div class="container">
-  <% unless @proxied_content %>
+<% unless @proxied_content %>
+  <div class="container">
     <div class="nav">
       <div class="pure-menu pure-menu-open pure-menu-horizontal">
         <ul>
@@ -30,10 +30,8 @@
         </ul>
       </div>
     </div>
-  <% end %>
-  <div class="main">
-    <%= yield %>
   </div>
-</div>
+<% end %>
+<%= yield %>
 </body>
 </html>
