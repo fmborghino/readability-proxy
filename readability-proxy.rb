@@ -5,11 +5,9 @@ require 'uri'
 require 'sinatra'
 
 $config = YAML.load_file(File.join(Dir.pwd, 'config.yml'))
-
-configure do
-end
-
-before do
+# recommend keeping secrets.yml in .gitignore
+if settings.environment == :development and File.exists?('secrets.yml')
+  $config.merge!(YAML.load_file(File.join(Dir.pwd, 'secrets.yml')))
 end
 
 get '/' do
