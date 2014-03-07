@@ -56,7 +56,7 @@ def parser
 
   if params[:format] == 'html'
     content_type "text/html; charset=utf-8"
-    @title = clean_title @parser_resp_body['title'], params[:url]
+    @title = clean_title @parser_resp_body['title']
     @proxied_content = true
     erb :content
   else
@@ -73,12 +73,12 @@ def http_get url
   http.request(request)
 end
 
-def clean_title title, original_url
+def clean_title title
   if title.nil? or
     title.empty? or
-    title == original_url
+    !!(title =~ /^https?:\/\//)
 
-    '[Original article]'
+    ''
   else
     title
   end
