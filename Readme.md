@@ -37,16 +37,16 @@ You can POST or GET against this endpoint.
 ### Parameters
 
 * `url` The url for which you want content.
-  
+
   This is the url for which you want Readability's parser API response.
 
 * `format` The response format you expect, [json|html]. Defaults to json.
-  * json format will return the entire raw json response from the Readability parser API.  
+  * json format will return the entire raw json response from the Readability parser API.
   * html format will inject some css and return a valid html5 page with
   the content section of the parser API response. A header is added with
   the article title that is also a link to the original url.
 
-* `onerr` Whether to redirect on error, [true|false]. Defaults to false.
+* `onerr` Whether to redirect on error, any value sets to true. Defaults to false.
 
   When set to true, any error from the parser API will respond with a
   redirect to the original url. This is useful if your client is loading
@@ -54,7 +54,7 @@ You can POST or GET against this endpoint.
   will cause the external browser to launch with the original url.
 
   This param has no effect in json format responses. Those already
-  contain a json representation of the error. 
+  contain a json representation of the error.
 
 ### Errors from the parser
 There are various reasons the Readability parser API cannot return
